@@ -36,7 +36,7 @@ Modification of python code and local-run is following steps.
     ```
 
 ### Note:
-- If you modified your code, you follow steps 5 and 4 above. The container will install the local python code by pip.
+- If you modified your code, you follow steps 5 and 3 above. The container will install the local python code by pip.
 - Docker-compose error might occur if you have not configure your git. If you need not use git, please comment out following lines of docker-compose.yml.
     ```
     - ${HOME}/.ssh:/root/.ssh:ro
