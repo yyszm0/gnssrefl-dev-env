@@ -1,0 +1,24 @@
+services:
+  gnssrefl-dev:
+    build: 
+      context: ..
+      dockerfile: gnssrefl-dev-env/Dockerfile
+    image: gnssrefl-dev
+    volumes:
+      # mount host's dir to container's /usr/src/gnssrefl
+      - ${GNSSREFL_HOST_SRC}:/usr/src/gnssrefl
+      - ${REFL_CODE_HOST_DIR}:/etc/gnssrefl/refl_code
+      - ${HOME}/.ssh:/root/.ssh:ro
+      - ${HOME}/.gitconfig:/root/.gitconfig:ro
+    environment:
+      - GNSSREFL_SRC_IN_CONTAINER=/usr/src/gnssrefl
+    working_dir: /etc/gnssrefl
+    ports:
+      - "8887:8887"
+    command: >
+      jupyter lab
+      --allow-root
+      --ip=0.0.0.0
+      --port=8887
+      --ServerApp.token=''
+      --ServerApp.password=''
